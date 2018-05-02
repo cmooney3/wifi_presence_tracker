@@ -1,0 +1,81 @@
+{% extends "template.html" %}
+
+{% block chart %}
+
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/gantt.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "gantt",
+  "theme": "light",
+  "marginRight": 70,
+  "columnWidth": 0.5,
+  "valueAxis": {
+    "type": "date"
+  },
+  "brightnessStep": 7,
+  "graph": {
+    "fillAlphas": 1,
+    "lineAlpha": 1,
+    "lineColor": "#fff",
+    "fillAlphas": 0.85,
+    "balloonText": "<b>[[hostname]] Connected</b><br /><b>start</b> [[start]]<br /><b>end</b>[[end]]"
+  },
+  "rotate": true,
+  "categoryField": "hostname",
+  "segmentsField": "uptime_events",
+  "startDateField": "start",
+  "endDateField": "end",
+  "dataProvider": [ 
+  {% for hostname in events %}
+      {
+      "hostname": "{{ hostname }}",
+      "uptime_events": [
+        {% for event in events[hostname] %}
+        {
+          "start": "{{ event["start"] }}",
+          "end": "{{ event["end"] }}",
+        },
+        {% endfor %}
+      ]
+    },
+  {% endfor %}
+  ],
+  "valueScrollbar": {
+    "autoGridCount": true
+  },
+  "chartCursor": {
+    "cursorColor": "#55bb76",
+    "valueBalloonsEnabled": false,
+    "cursorAlpha": 0,
+    "valueLineAlpha": 0.5,
+    "valueLineBalloonEnabled": true,
+    "valueLineEnabled": true,
+    "zoomable": false,
+    "valueZoomable": true
+  },
+  "export": {
+    "enabled": true
+  },
+  "dataDateFormat": "YYYY-MM-DD HH:JJ"
+} );
+</script>
+
+
+<div id="chartdiv"></div>
+
+{% endblock %}

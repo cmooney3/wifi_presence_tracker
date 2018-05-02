@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+    <title> Wifi Presence Tracker </title>
+  </head>
+
+  <body>
+
+    <h1>Wifi Presence Tracker</h1>
+
+    {% block chart %}
+        TEST
+    {% endblock %}
+
+    {% for log in logs %}
+      <h2> {{ log.timestamp }} </h2>
+      <ul>
+        {% for hostname in log.hostnames %}
+        <li>{{ hostname }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+
+  </body>
+
+</html>

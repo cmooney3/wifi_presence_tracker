@@ -33,6 +33,6 @@ def main():
       pickle.dump((timestamp, present_devices), log_file)
 
     # Pause before the next reading
-    time.sleep(10)
+    time.sleep(120)
 
 main()
