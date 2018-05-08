@@ -6,6 +6,9 @@ import time
 
 from jinja2 import Template, Environment, FileSystemLoader
 
+import known_hosts
+
+
 LOG_FILENAME="log.p"
 TEMPLATE_FILENAME="chart.html"
 
@@ -48,7 +51,11 @@ def GeneratePageFromLog(log_filename):
   # Figure out the start/stop times of each spurt of being connected for each hostname
   events = {}
   for hostname in full_hostname_set:
-    print hostname
+    if hostname in known_hosts.names:
+      print "%s (%s)" % (known_hosts.names[hostname], hostname)
+    else:
+      print hostname
+
     events[hostname] = [] 
     start_time = None
     for log in log_data:
@@ -68,7 +75,7 @@ def GeneratePageFromLog(log_filename):
   except Exception as exp:
     return TEMPLATE_ERROR_HTML.format(exp)
   
-  return t.render(events=events)
+  return t.render(events=events, ignore_hosts=known_hosts.uninteresting_hosts, known_hosts=known_hosts.names)
 
 ################################################################################
 # Server code here, handling HTTP requests

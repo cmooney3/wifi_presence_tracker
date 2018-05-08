@@ -5,7 +5,7 @@
 <style>
   #chartdiv {
     width: 100%;
-    height: 500px;
+    height: 900px;
   }
 </style>
 
@@ -25,9 +25,10 @@ var chart = AmCharts.makeChart( "chartdiv", {
   "marginRight": 70,
   "columnWidth": 0.5,
   "valueAxis": {
-    "type": "date"
+    "type": "date",
+    "minPeriod": "mm",
+    "ignoreAxisWidth": true
   },
-  "brightnessStep": 7,
   "graph": {
     "fillAlphas": 1,
     "lineAlpha": 1,
@@ -42,17 +43,24 @@ var chart = AmCharts.makeChart( "chartdiv", {
   "endDateField": "end",
   "dataProvider": [ 
   {% for hostname in events %}
+    {% if hostname not in ignore_hosts %}
       {
-      "hostname": "{{ hostname }}",
-      "uptime_events": [
-        {% for event in events[hostname] %}
-        {
-          "start": "{{ event["start"] }}",
-          "end": "{{ event["end"] }}",
-        },
-        {% endfor %}
-      ]
-    },
+        "hostname":
+          {% if hostname in known_hosts %}
+            "{{ known_hosts[hostname] }}",
+          {% else %}
+            "{{ hostname }}",
+          {% endif %}
+        "uptime_events": [
+          {% for event in events[hostname] %}
+          {
+            "start": "{{ event["start"] }}",
+            "end": "{{ event["end"] }}",
+          },
+          {% endfor %}
+        ]
+      },
+    {% endif %}
   {% endfor %}
   ],
   "valueScrollbar": {
@@ -68,10 +76,17 @@ var chart = AmCharts.makeChart( "chartdiv", {
     "zoomable": false,
     "valueZoomable": true
   },
+  "categoryAxis": {
+    "minorGridEnabled": true,
+    "position": "left",
+    "labelFunction": function(valueText, serialDataItem, categoryAxis) {
+      // TODO: edit here to make the labels for each device different
+      return valueText;
+    },
+  },
   "export": {
     "enabled": true
   },
-  "dataDateFormat": "YYYY-MM-DD HH:JJ"
 } );
 </script>
 
