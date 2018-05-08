@@ -20,6 +20,7 @@ uninteresting_hosts = [
   "5C:52:1E:66:5A:51", # Frank's Nintendo Switch
   "F0:27:2D:37:CB:79", # John's Kindle
   "F0:4F:7C:B8:18:1A", # Ashley's Kindle
+  "5C:CF:7F:E4:59:ED", # John's DIY Wifi Light
 ]
 
 names = {
@@ -58,4 +59,5 @@ names = {
   "70:3A:CB:18:98:D1": "Google Wifi Router",
   "F0:27:2D:37:CB:79": "John's Kindle",
   "F0:4F:7C:B8:18:1A": "Ashley's Kindle",
+  "5C:CF:7F:E4:59:ED": "John's DIY Wifi Light",
 }
