@@ -75,7 +75,10 @@ def GeneratePageFromLog(log_filename):
   except Exception as exp:
     return TEMPLATE_ERROR_HTML.format(exp)
   
-  return t.render(events=events, ignore_hosts=known_hosts.uninteresting_hosts, known_hosts=known_hosts.names)
+  return t.render(all_hostnames=sorted(list(full_hostname_set), key=lambda x:known_hosts.names.get(x, x)),
+                  events=events,
+                  ignore_hosts=known_hosts.uninteresting_hosts,
+                  known_hosts=known_hosts.names)
 
 ################################################################################
 # Server code here, handling HTTP requests

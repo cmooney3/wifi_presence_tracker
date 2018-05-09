@@ -42,7 +42,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
   "startDateField": "start",
   "endDateField": "end",
   "dataProvider": [ 
-  {% for hostname in events %}
+  {% for hostname in all_hostnames %}
     {% if hostname not in ignore_hosts %}
       {
         "hostname":
