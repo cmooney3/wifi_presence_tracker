@@ -30,13 +30,12 @@ names = {
   "F0:D7:AA:8E:88:34": "John's Phone",
   "40:88:05:A9:E5:3B": "Ashley's Phone",
   "9C:B6:D0:8C:51:AB": "Charlie's Laptop",
+  "20:68:9D:5B:BB:56": "John's Phone",
+  "8C:F5:A3:B2:FC:E3": "Emma's Phone",
 
   # Observed but unknow devices
   "DC:66:72:C4:F0:BB": "Armando's Phone?",
   "2C:33:61:93:0B:C7": "Frank's Phone?",
-
-  "8C:F5:A3:B2:FC:E3": "Emma's Phone?",
-  "20:68:9D:5B:BB:56": "Emma's Something?",
 
   # Known, but boring devices
   "5C:52:1E:66:5A:51": "Frank's Nintendo Switch",
