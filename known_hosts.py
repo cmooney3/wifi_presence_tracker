@@ -21,22 +21,26 @@ uninteresting_hosts = [
   "F0:4F:7C:B8:18:1A", # Ashley's Kindle
   "5C:CF:7F:E4:59:ED", # John's DIY Wifi Light
   "54:60:09:C0:2A:02", # John's Room Chromecast Audio
+  "C0:D2:F3:25:AE:04", # John's Room TV
 ]
 
 names = {
   # Known interesting devices
   "A8:96:75:97:9B:97": "Charlie's Phone",
   "C8:69:CD:AF:BC:C6": "Ashley's Laptop",
+  "D0:04:01:03:50:61": "Ashley's Phone",
   "F0:D7:AA:8E:88:34": "John's Phone",
   "40:88:05:A9:E5:3B": "Ashley's Phone",
   "9C:B6:D0:8C:51:AB": "Charlie's Laptop",
   "20:68:9D:5B:BB:56": "John's Laptop",
   "8C:F5:A3:B2:FC:E3": "Emma's Phone",
+  "54:60:09:D4:E3:FA": "Bathroom Chromecast",
 
   # Unknown devices
-  "C0:D2:F3:25:AE:04": "John's Room TV?",
+  "00:E0:4C:12:94:01": "Johns 'Yoga'?",
 
   # Known, but boring devices
+  "C0:D2:F3:25:AE:04": "John's Room TV",
   "54:60:09:E1:D6:6A": "AC's Room Chromecast Audio",
   "54:60:09:E9:37:EC": "Garage Chromecast Audio",
   "54:60:09:C0:2A:02": "John's Room Chromecast Audio",
